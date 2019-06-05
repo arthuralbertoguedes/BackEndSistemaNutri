@@ -24,6 +24,7 @@ public class EtiquetaController {
 	
 	@RequestMapping(value="/salvar", method = RequestMethod.POST)
 		public void salvarPaciente(@RequestBody Object paciente) {
+		
 			System.out.println(paciente);
 		}
 }
