@@ -24,7 +24,6 @@ public class ConsultaController {
 	
 	@RequestMapping(value="/salvar", method = RequestMethod.POST)
 	public Consulta salvarConsulta(@RequestBody Consulta consulta) {
-		System.out.println(consulta.toString());
 		return consultaService.salvarConsulta(consulta);
 	}
 	
