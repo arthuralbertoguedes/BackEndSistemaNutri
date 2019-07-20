@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projetoREST.model.Pessoa;
+import br.com.projetoREST.model.Paciente;
 import br.com.projetoREST.service.PacienteService;
 
 
@@ -22,29 +21,34 @@ public class PacienteController {
 	PacienteService pacienteService;
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public Pessoa adicionarEtiqueta() {
-		Pessoa paciente = new Pessoa();
+	public Paciente adicionarEtiqueta() {
+		Paciente paciente = new Paciente();
 		paciente.setNome("Arthur Guedes");
 		return paciente;
 	}
 
 	
 	@RequestMapping(value="/salvar", method = RequestMethod.POST)
-	public Long salvarPaciente(@RequestBody Pessoa paciente) {
-		paciente.setIsPaciente(true);
+	public Long salvarPaciente(@RequestBody Paciente paciente) {
 		return pacienteService.salvar(paciente);
 	}
 
 	@RequestMapping(value="/listarTodos",method = RequestMethod.GET)
-	public List<Pessoa> listarTodos(){
+	public List<Paciente> listarTodos(){
 		return pacienteService.listarTodos();
 	
 	}
 	
 	@RequestMapping(value="/listarPorNome/{nomePaciente}", method = RequestMethod.GET)
-	public List<Pessoa> listarPorNome(@PathVariable("nomePaciente") String nomePaciente){
+	public List<Paciente> listarPorNome(@PathVariable("nomePaciente") String nomePaciente){
 		return pacienteService.listarPorNome(nomePaciente);
 	}
+	
+	@RequestMapping(value="/listarUltimos", method = RequestMethod.GET)
+	public List<Paciente> listarUltimosCadastrados(){
+		return pacienteService.listarUltimosCadastrados();
+	}
+	
 
 }
 

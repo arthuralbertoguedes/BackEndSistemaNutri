@@ -3,28 +3,34 @@ package br.com.projetoREST.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import br.com.projetoREST.model.Pessoa;
+import br.com.projetoREST.model.Paciente;
 import br.com.projetoREST.repository.PacienteRepository;
 
 @Service
 public class PacienteService {
 	
 	@Autowired
-	PacienteRepository pessoaRepository;
+	PacienteRepository pacienteRepository;
 	
-	public Long salvar(Pessoa pessoa) {
-		return pessoaRepository.save(pessoa).getId();
+	public Long salvar(Paciente pessoa) {
+		return pacienteRepository.save(pessoa).getId();
 	}
 	
-	public List<Pessoa> listarTodos(){
-		return pessoaRepository.findAll();
+	public List<Paciente> listarTodos(){
+		return pacienteRepository.findAll();
 	}
 	
-	public List<Pessoa> listarPorNome(String nomePaciente){
+	public List<Paciente> listarPorNome(String nomePaciente){
 		nomePaciente = "%" + nomePaciente + "%";
-		return pessoaRepository.findByNome(nomePaciente);
+		return pacienteRepository.findByNome(nomePaciente);
 	}
 	
-}
+	
+	public List<Paciente> listarUltimosCadastrados(){
+		return pacienteRepository.listarUltimosCadastrados(PageRequest.of(0,3));
+	}
+
+}	

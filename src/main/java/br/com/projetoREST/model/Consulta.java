@@ -1,6 +1,7 @@
 package br.com.projetoREST.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +30,12 @@ public class Consulta {
 	
 	@Column(name="id_paciente", nullable = false)
 	private Long idPaciente;
-
+	
+	//Campo que será carregado no component FullCalendar
+	//que corresponde ao dia/horario que começa a consulta do paciente
+	@Column(name="horario_date_time")
+	private LocalDateTime horarioDateTime;
+	
 	public Consulta() {}
 	
 	public Consulta(Long id, 
@@ -37,7 +43,8 @@ public class Consulta {
 					String horarioInicio, 
 					String horarioFim,
 					String informacoesAdicionais,
-					Long idPaciente) {
+					Long idPaciente,
+					LocalDateTime horarioSemFormatacao) {
 		super();
 		this.id = id;
 		this.dataConsulta = dataConsulta;
@@ -45,6 +52,7 @@ public class Consulta {
 		this.horarioFim = horarioFim;
 		this.informacoesAdicionais = informacoesAdicionais;
 		this.idPaciente = idPaciente;
+		this.horarioDateTime = horarioSemFormatacao;
 	}
 
 	public Long getId() {
@@ -93,6 +101,15 @@ public class Consulta {
 
 	public void setIdPaciente(Long idPaciente) {
 		this.idPaciente = idPaciente;
+	}
+
+	
+	public LocalDateTime getHorarioDateTime() {
+		return horarioDateTime;
+	}
+
+	public void setHorarioDateTime(LocalDateTime horarioDateTime) {
+		this.horarioDateTime = horarioDateTime;
 	}
 
 	@Override

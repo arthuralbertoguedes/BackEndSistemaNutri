@@ -17,6 +17,7 @@ public class AlimentoService {
 			 pesquisa = "%%";
 		else
 			pesquisa = "%" + pesquisa + "%";
+		System.out.println(pesquisa);
 		return this.repository.listarPorNome(pesquisa.toUpperCase());
 	}
 }
