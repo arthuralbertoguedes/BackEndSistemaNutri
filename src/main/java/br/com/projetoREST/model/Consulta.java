@@ -5,11 +5,19 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Consulta {
 	
 	@Id
@@ -27,15 +35,16 @@ public class Consulta {
 	
 	@Column(name="informacoes_adicionais", nullable = true)
 	private String informacoesAdicionais;
-	
-	@Column(name="id_paciente", nullable = false)
-	private Long idPaciente;
-	
+
 	//Campo que será carregado no component FullCalendar
 	//que corresponde ao dia/horario que começa a consulta do paciente
 	@Column(name="horario_date_time")
 	private LocalDateTime horarioDateTime;
 	
+	@JoinColumn(name = "paciente_id")
+	@ManyToOne()
+	private Paciente paciente;
+
 	public Consulta() {}
 	
 	public Consulta(Long id, 
@@ -51,9 +60,20 @@ public class Consulta {
 		this.horarioInicio = horarioInicio;
 		this.horarioFim = horarioFim;
 		this.informacoesAdicionais = informacoesAdicionais;
-		this.idPaciente = idPaciente;
 		this.horarioDateTime = horarioSemFormatacao;
 	}
+	
+	
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	
 
 	public Long getId() {
 		return id;
@@ -93,14 +113,6 @@ public class Consulta {
 
 	public void setInformacoesAdicionais(String informacoesAdicionais) {
 		this.informacoesAdicionais = informacoesAdicionais;
-	}
-
-	public Long getIdPaciente() {
-		return idPaciente;
-	}
-
-	public void setIdPaciente(Long idPaciente) {
-		this.idPaciente = idPaciente;
 	}
 
 	

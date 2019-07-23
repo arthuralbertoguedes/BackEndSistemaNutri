@@ -26,6 +26,7 @@ public class ConsultaController {
 	
 	@RequestMapping(value="/salvar", method = RequestMethod.POST)
 	public Consulta salvarConsulta(@RequestBody Consulta consulta) {
+		consulta.setHorarioDateTime(consulta.getHorarioDateTime().minusHours(3));
 		return consultaService.salvarConsulta(consulta);
 	}
 	

@@ -2,19 +2,27 @@ package br.com.projetoREST.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Paciente {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long Id;
+	private Long id;
 	
 	@Column(name="nome",nullable=false)
 	private String nome;
@@ -37,12 +45,16 @@ public class Paciente {
 	@Column(name="ultima_consulta", nullable=true)
 	private LocalDate ultimaConsulta;
 	
+	@OneToMany(mappedBy = "paciente")
+	@JsonIgnore
+	private List<Consulta> consulta = new ArrayList<>();
+	
 	public Paciente() {}
 
 	public Paciente(Long id, String nome, char genero, LocalDate dataNascimento, String telefone, String email,
 			LocalDateTime dataCadastro, LocalDate ultimaConsulta) {
 		super();
-		Id = id;
+		this.id = id;
 		this.nome = nome;
 		this.genero = genero;
 		this.dataNascimento = dataNascimento;
@@ -52,12 +64,13 @@ public class Paciente {
 		this.ultimaConsulta = ultimaConsulta;
 	}
 
+
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -117,4 +130,13 @@ public class Paciente {
 		this.ultimaConsulta = ultimaConsulta;
 	}
 
+	public List<Consulta> getConsulta() {
+		return consulta;
+	}
+
+	public void setConsulta(List<Consulta> consulta) {
+		this.consulta = consulta;
+	}
+
+	
 }
