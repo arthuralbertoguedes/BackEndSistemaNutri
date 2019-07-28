@@ -1,10 +1,14 @@
 package br.com.projetoREST.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Anamnese {
@@ -71,14 +75,20 @@ public class Anamnese {
 	@Column(nullable = true)
 	private String alimentosConsumidos;
 
-
+	/*Para chave estrageira paciente_id*/
+	@OneToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "paciente_id", referencedColumnName="id")
+	private Paciente paciente;
+	
+	
 	public Anamnese() {}
 	
+
 	public Anamnese(Long id, String objetivo, String casoClinico, String refeicoesFora, String apetite, boolean fumante,
 			boolean bebidas, boolean academia, String atividadesFisica, int tempoDeSono, String qualidadeDeSono,
 			boolean gestante, boolean diabetes, String alergias, String sintomas, String doencas, String observacoes,
-			int quantidadeRefeicoes, String suplementos, String alimentosConsumidos) {
-		
+			int quantidadeRefeicoes, String suplementos, String alimentosConsumidos, Paciente paciente) {
+		super();
 		Id = id;
 		this.objetivo = objetivo;
 		this.casoClinico = casoClinico;
@@ -99,17 +109,26 @@ public class Anamnese {
 		this.quantidadeRefeicoes = quantidadeRefeicoes;
 		this.suplementos = suplementos;
 		this.alimentosConsumidos = alimentosConsumidos;
+		this.paciente = paciente;
 	}
 
 
 
+
+
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
 
 	public Long getId() {
 		return Id;
 	}
-
-
-
 
 	public void setId(Long id) {
 		Id = id;
@@ -287,6 +306,4 @@ public class Anamnese {
 		this.alimentosConsumidos = alimentosConsumidos;
 	}
 
-
-	
 }

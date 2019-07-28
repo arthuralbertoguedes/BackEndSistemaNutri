@@ -1,6 +1,7 @@
 package br.com.projetoREST.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,11 @@ public class PacienteController {
 		return pacienteService.listarUltimosCadastrados();
 	}
 	
+	@RequestMapping(value="/{id}")
+	public Optional<Paciente> listarPorId(@PathVariable("id") Long id) {
+
+		return this.pacienteService.listarPorId(id);
+	}
 
 }
 

@@ -5,19 +5,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Paciente {
 	
 	@Id
@@ -46,13 +46,20 @@ public class Paciente {
 	private LocalDate ultimaConsulta;
 	
 	@OneToMany(mappedBy = "paciente")
-	@JsonIgnore
 	private List<Consulta> consulta = new ArrayList<>();
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "endereco_id", referencedColumnName = "id")
+	private Endereco endereco;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy="paciente")
+	private Anamnese anamnese;
 	
 	public Paciente() {}
 
 	public Paciente(Long id, String nome, char genero, LocalDate dataNascimento, String telefone, String email,
-			LocalDateTime dataCadastro, LocalDate ultimaConsulta) {
+			LocalDateTime dataCadastro, LocalDate ultimaConsulta, Endereco endereco) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -62,6 +69,7 @@ public class Paciente {
 		this.email = email;
 		this.dataCadastro = dataCadastro;
 		this.ultimaConsulta = ultimaConsulta;
+		this.endereco = endereco;
 	}
 
 
@@ -136,6 +144,14 @@ public class Paciente {
 
 	public void setConsulta(List<Consulta> consulta) {
 		this.consulta = consulta;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	

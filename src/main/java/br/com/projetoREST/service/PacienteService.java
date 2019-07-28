@@ -1,6 +1,7 @@
 package br.com.projetoREST.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -31,6 +32,10 @@ public class PacienteService {
 	
 	public List<Paciente> listarUltimosCadastrados(){
 		return pacienteRepository.listarUltimosCadastrados(PageRequest.of(0,3));
+	}
+	
+	public Optional<Paciente> listarPorId(Long id){
+		return pacienteRepository.findById(id);
 	}
 
 }	
