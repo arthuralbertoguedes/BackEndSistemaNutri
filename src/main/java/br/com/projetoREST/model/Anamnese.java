@@ -3,12 +3,12 @@ package br.com.projetoREST.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Transient;
 
 @Entity
 public class Anamnese {
@@ -30,14 +30,14 @@ public class Anamnese {
 	@Column(nullable = true)
 	private String apetite;
 	
-	@Column(nullable = true)
-	private boolean fumante;
+	@Column(name="fumante",nullable = true, length=1)
+	private String fumante;
 	
-	@Column
-	private boolean bebidas;
+	@Column(name="bebidas",nullable = true, length=1)
+	private String bebidas;
 	
-	@Column
-	private boolean academia;
+	@Column(name="academia",nullable = true, length=1)
+	private String academia;
 	
 	@Column(nullable = true)
 	private String atividadesFisica;
@@ -45,14 +45,14 @@ public class Anamnese {
 	@Column(nullable = true)
 	private int tempoDeSono;
 	
-	@Column(name="qualidade_de_sono",nullable = true)
+	@Column(name="qualidade_de_sono",nullable = true, length=1)
 	private String qualidadeDeSono;
 	
-	@Column
-	private boolean gestante;
+	@Column(name="gestante",nullable = true, length=1)
+	private String gestante;
 	
-	@Column
-	private boolean diabetes;
+	@Column(name="diabetes",nullable = true, length=1)
+	private String diabetes;
 	
 	@Column(nullable = true)
 	private String alergias;
@@ -82,11 +82,11 @@ public class Anamnese {
 	
 	
 	public Anamnese() {}
-	
 
-	public Anamnese(Long id, String objetivo, String casoClinico, String refeicoesFora, String apetite, boolean fumante,
-			boolean bebidas, boolean academia, String atividadesFisica, int tempoDeSono, String qualidadeDeSono,
-			boolean gestante, boolean diabetes, String alergias, String sintomas, String doencas, String observacoes,
+	
+	public Anamnese(Long id, String objetivo, String casoClinico, String refeicoesFora, String apetite, String fumante,
+			String bebidas, String academia, String atividadesFisica, int tempoDeSono, String qualidadeDeSono,
+			String gestante, String diabetes, String alergias, String sintomas, String doencas, String observacoes,
 			int quantidadeRefeicoes, String suplementos, String alimentosConsumidos, Paciente paciente) {
 		super();
 		Id = id;
@@ -115,80 +115,82 @@ public class Anamnese {
 
 
 
-
-
-	public Paciente getPaciente() {
-		return paciente;
-	}
-
-
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
-	}
-
 	public Long getId() {
 		return Id;
 	}
+
 
 	public void setId(Long id) {
 		Id = id;
 	}
 
+
 	public String getObjetivo() {
 		return objetivo;
 	}
+
 
 	public void setObjetivo(String objetivo) {
 		this.objetivo = objetivo;
 	}
 
+
 	public String getCasoClinico() {
 		return casoClinico;
 	}
+
 
 	public void setCasoClinico(String casoClinico) {
 		this.casoClinico = casoClinico;
 	}
 
+
 	public String getRefeicoesFora() {
 		return refeicoesFora;
 	}
+
 
 	public void setRefeicoesFora(String refeicoesFora) {
 		this.refeicoesFora = refeicoesFora;
 	}
 
+
 	public String getApetite() {
 		return apetite;
 	}
+
 
 	public void setApetite(String apetite) {
 		this.apetite = apetite;
 	}
 
-	public boolean isFumante() {
+
+	public String getFumante() {
 		return fumante;
 	}
 
-	public void setFumante(boolean fumante) {
+
+	public void setFumante(String fumante) {
 		this.fumante = fumante;
 	}
 
-	public boolean isBebidas() {
+
+	public String getBebidas() {
 		return bebidas;
 	}
 
-	public void setBebidas(boolean bebidas) {
+
+	public void setBebidas(String bebidas) {
 		this.bebidas = bebidas;
 	}
 
 
-	public boolean isAcademia() {
+	public String getAcademia() {
 		return academia;
 	}
 
 
-	public void setAcademia(boolean academia) {
+	public void setAcademia(String academia) {
 		this.academia = academia;
 	}
 
@@ -208,7 +210,6 @@ public class Anamnese {
 	}
 
 
-
 	public void setTempoDeSono(int tempoDeSono) {
 		this.tempoDeSono = tempoDeSono;
 	}
@@ -223,25 +224,31 @@ public class Anamnese {
 		this.qualidadeDeSono = qualidadeDeSono;
 	}
 
-	public boolean isGestante() {
+
+	public String getGestante() {
 		return gestante;
 	}
 
-	public void setGestante(boolean gestante) {
+
+	public void setGestante(String gestante) {
 		this.gestante = gestante;
 	}
 
-	public boolean isDiabetes() {
+
+	public String getDiabetes() {
 		return diabetes;
 	}
 
-	public void setDiabetes(boolean diabetes) {
+
+	public void setDiabetes(String diabetes) {
 		this.diabetes = diabetes;
 	}
+
 
 	public String getAlergias() {
 		return alergias;
 	}
+
 
 	public void setAlergias(String alergias) {
 		this.alergias = alergias;
@@ -282,6 +289,7 @@ public class Anamnese {
 		return quantidadeRefeicoes;
 	}
 
+
 	public void setQuantidadeRefeicoes(int quantidadeRefeicoes) {
 		this.quantidadeRefeicoes = quantidadeRefeicoes;
 	}
@@ -306,4 +314,16 @@ public class Anamnese {
 		this.alimentosConsumidos = alimentosConsumidos;
 	}
 
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+	
+
+	
 }

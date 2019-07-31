@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,13 +54,19 @@ public class Paciente {
 	private Endereco endereco;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy="paciente")
+	@OneToOne(mappedBy="paciente", fetch = FetchType.LAZY)
 	private Anamnese anamnese;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy="paciente", fetch = FetchType.LAZY)
+	private Antropometria antropometria;
 	
 	public Paciente() {}
 
+
 	public Paciente(Long id, String nome, char genero, LocalDate dataNascimento, String telefone, String email,
-			LocalDateTime dataCadastro, LocalDate ultimaConsulta, Endereco endereco) {
+			LocalDateTime dataCadastro, LocalDate ultimaConsulta, List<Consulta> consulta, Endereco endereco,
+			Anamnese anamnese, Antropometria antropometria) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -69,9 +76,30 @@ public class Paciente {
 		this.email = email;
 		this.dataCadastro = dataCadastro;
 		this.ultimaConsulta = ultimaConsulta;
+		this.consulta = consulta;
 		this.endereco = endereco;
+		this.anamnese = anamnese;
+		this.antropometria = antropometria;
 	}
 
+
+
+
+	public Anamnese getAnamnese() {
+		return anamnese;
+	}
+
+	public void setAnamnese(Anamnese anamnese) {
+		this.anamnese = anamnese;
+	}
+
+	public Antropometria getAntropometria() {
+		return antropometria;
+	}
+
+	public void setAntropometria(Antropometria antropometria) {
+		this.antropometria = antropometria;
+	}
 
 	public Long getId() {
 		return id;
@@ -156,3 +184,12 @@ public class Paciente {
 
 	
 }
+
+/*spring.datasource.url=jdbc:postgresql://localhost:5432/SistemaNutri
+spring.datasource.username=admin_sistema_nutri
+spring.datasource.password=12345
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update
+hibernate.jdbc.lob.non_contextual_creation=true
+spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults = false*/
