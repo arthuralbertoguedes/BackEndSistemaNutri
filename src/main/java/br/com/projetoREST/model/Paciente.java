@@ -47,6 +47,7 @@ public class Paciente {
 	private LocalDate ultimaConsulta;
 	
 	@OneToMany(mappedBy = "paciente")
+	@JsonIgnore
 	private List<Consulta> consulta = new ArrayList<>();
 	
 	@OneToOne(cascade = CascadeType.ALL)
