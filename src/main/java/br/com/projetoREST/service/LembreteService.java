@@ -1,5 +1,8 @@
 package br.com.projetoREST.service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,4 +19,7 @@ public class LembreteService {
 		return this.repository.save(lembrete);
 	}
 	
+	public List<Lembrete> buscarLembretesHoje(LocalDate dataDeHoje){
+		return this.repository.buscarLembretesHoje(dataDeHoje);
+	}
 }

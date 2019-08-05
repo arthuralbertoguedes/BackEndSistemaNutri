@@ -1,11 +1,14 @@
 package br.com.projetoREST.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projetoREST.model.Lembrete;
+import br.com.projetoREST.model.ObjetoConsulta;
 import br.com.projetoREST.service.LembreteService;
 
 @RestController
@@ -20,5 +23,8 @@ public class LembreteController {
 		return this.service.salvar(lembrete);
 	}
 	
-	
+	@RequestMapping(value="/listarLembretesHoje")
+	public List<Lembrete> buscarLembretesHoje(@RequestBody ObjetoConsulta objetoConsulta){
+		return this.service.buscarLembretesHoje(objetoConsulta.getData());
+	}
 }
