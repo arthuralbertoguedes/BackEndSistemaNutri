@@ -3,6 +3,7 @@ package br.com.projetoREST.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,17 @@ public class ConsultaController {
 	public Consulta salvarConsulta(@RequestBody Consulta consulta) {
 		consulta.setHorarioDateTime(consulta.getHorarioDateTime().minusHours(3));
 		return consultaService.salvarConsulta(consulta);
+	}
+	
+	@RequestMapping(value="/listarPorNomePaciente/{nomePaciente}", method = RequestMethod.GET)
+	public List<Consulta> buscarPorNomePaciente(@PathVariable("nomePaciente") String nomePaciente) {
+		return consultaService.buscarPorNomePaciente(nomePaciente);
+	}
+	
+
+	@RequestMapping(value="/cancelar/{id}", method = RequestMethod.GET)
+	public void cancelar(@PathVariable("id") Long id) {
+		consultaService.cancelar(id);
 	}
 	
 }

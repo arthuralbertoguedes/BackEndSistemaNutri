@@ -21,4 +21,17 @@ public class ConsultaService {
 	public List<Consulta> listar(){
 		return consultaRepository.findAll();
 	}
+	
+	public List<Consulta> buscarPorNomePaciente(String nomePaciente){
+		if(nomePaciente.equals("flagListarTodos"))
+			nomePaciente = "%%";
+		else
+			nomePaciente = "%" + nomePaciente + "%";
+		return consultaRepository.buscarPorNomePaciente(nomePaciente);
+	}
+	
+	public void cancelar(Long id){
+		consultaRepository.deleteById(id);
+	}
+	
 }
