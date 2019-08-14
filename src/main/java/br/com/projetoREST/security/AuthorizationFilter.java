@@ -45,19 +45,19 @@ public class AuthorizationFilter implements Filter {
 		//Para qualquer requisição com destino a outro end_point 
 		else {
 			//Verifica Se o header com a autorização existe
-			if(req.getHeader("authorization") != null) {			
-				if(req.getHeader("authorization").substring(0,7).equals("Bearer ")) {
+			if(req.getHeader("Authorization") != null) {			
+				if(req.getHeader("Authorization").substring(0,7).equals("Bearer ")) {
 					
-					String token = req.getHeader("authorization").substring(7);
+					String token = req.getHeader("Authorization").substring(7);
 					
 					/*Verifica se o token é válido
 					* Se sim, libera o acesso para o respectivo end point
 					* senão, lança exceção e bloqueia o acesso */
 					try {
 						
-						Jwts.parser().setSigningKey("abacaxi").parse(token).getBody();				
-						
+						Jwts.parser().setSigningKey("abacaxi").parse(token).getBody();						
 						chain.doFilter(request, response);
+						return;
 					}
 					//Em caso de token inválido
 					catch(SignatureException e) {
