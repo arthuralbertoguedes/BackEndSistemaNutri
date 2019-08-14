@@ -1,9 +1,14 @@
 package br.com.projetoREST.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import br.com.projetoREST.enums.TipoUsuario;
 
 /*
 * Entidade que salva os usuários do sistema  
@@ -25,19 +30,33 @@ public class Usuario {
 	/* Status A para ativo e I para inativo */ 
 	private char status;
 	
+	@Column(name = "tipo_usuario")
+	@Enumerated(EnumType.STRING)
+	private TipoUsuario tipo_usuario;
 	
 	public Usuario() {}
 	
 
-	public Usuario(Long id, String login, String senha, String nome, char status) {
+	public Usuario(Long id, String login, String senha, String nome, char status, TipoUsuario tipoUsuario) {
 		super();
 		this.id = id;
 		this.login = login;
 		this.senha = senha;
 		this.nome = nome;
 		this.status = status;
+		this.tipo_usuario = tipoUsuario;
 	}
 
+	
+
+	public TipoUsuario getTipo_usuario() {
+		return tipo_usuario;
+	}
+
+
+	public void setTipo_usuario(TipoUsuario tipo_usuario) {
+		this.tipo_usuario = tipo_usuario;
+	}
 
 
 	public Long getId() {

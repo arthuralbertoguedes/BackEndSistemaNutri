@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.projetoREST.model.Usuario;
 import br.com.projetoREST.repository.UsuarioRepository;
+import br.com.projetoREST.security.Login;
 
 @Service
 public class UsuarioService {
@@ -18,5 +19,16 @@ public class UsuarioService {
 		return this.repository.findById(new Long(1));
 	}
 	
-
+	public Usuario verificarUsuarioSenha(Login login) {
+		
+		//Verifica se as informações de login estão corretas
+		Usuario usuarioRetornado = this.repository.verificarUsuarioSenha(login.getUsuario(), login.getSenha());
+		
+		//Caso tenha encontrado algum usuário com as informações correspondentes
+		if(usuarioRetornado!=null)
+			return usuarioRetornado;
+		
+		else
+			return null;	
+	}
 }
