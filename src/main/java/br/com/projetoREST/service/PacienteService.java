@@ -1,5 +1,6 @@
 package br.com.projetoREST.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ public class PacienteService {
 	PacienteRepository pacienteRepository;
 	
 	public Long salvar(Paciente pessoa) {
+		pessoa.setDataCadastro(LocalDateTime.now());
 		return pacienteRepository.save(pessoa).getId();
 	}
 	

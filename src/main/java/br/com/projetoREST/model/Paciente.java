@@ -37,7 +37,7 @@ public class Paciente {
 	@Column(name="telefone",nullable=true)
 	private String telefone;
 	
-	@Column(name="email",nullable=false)
+	@Column(name="email",nullable=true)
 	private String email;
 	
 	@Column(name="dataCadastro", nullable=false)
@@ -45,6 +45,8 @@ public class Paciente {
 
 	@Column(name="ultima_consulta", nullable=true)
 	private LocalDate ultimaConsulta;
+	
+	private String localImagem;
 	
 	@OneToMany(mappedBy = "paciente")
 	@JsonIgnore
@@ -67,7 +69,7 @@ public class Paciente {
 
 	public Paciente(Long id, String nome, char genero, LocalDate dataNascimento, String telefone, String email,
 			LocalDateTime dataCadastro, LocalDate ultimaConsulta, List<Consulta> consulta, Endereco endereco,
-			Anamnese anamnese, Antropometria antropometria) {
+			Anamnese anamnese, Antropometria antropometria, String localImagem) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -81,6 +83,7 @@ public class Paciente {
 		this.endereco = endereco;
 		this.anamnese = anamnese;
 		this.antropometria = antropometria;
+		this.localImagem = localImagem;
 	}
 
 
@@ -183,6 +186,17 @@ public class Paciente {
 		this.endereco = endereco;
 	}
 
+
+	public String getLocalImagem() {
+		return localImagem;
+	}
+
+
+	public void setLocalImagem(String localImagem) {
+		this.localImagem = localImagem;
+	}
+
+	
 	
 }
 

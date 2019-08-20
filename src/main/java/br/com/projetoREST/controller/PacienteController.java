@@ -3,6 +3,9 @@ package br.com.projetoREST.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServlet;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,6 +58,8 @@ public class PacienteController {
 
 		return this.pacienteService.listarPorId(id);
 	}
+	
+	
 
 }
 
