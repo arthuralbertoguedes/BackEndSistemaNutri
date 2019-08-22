@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projetoREST.model.Consulta;
+import br.com.projetoREST.model.ParametrosPesquisa;
 import br.com.projetoREST.service.ConsultaService;
 
 @RestController
@@ -31,9 +32,9 @@ public class ConsultaController {
 		return consultaService.salvarConsulta(consulta);
 	}
 	
-	@RequestMapping(value="/listarPorNomePaciente/{nomePaciente}", method = RequestMethod.GET)
-	public List<Consulta> buscarPorNomePaciente(@PathVariable("nomePaciente") String nomePaciente) {
-		return consultaService.buscarPorNomePaciente(nomePaciente);
+	@RequestMapping(value="/listarPorNomePaciente", method = RequestMethod.POST)
+	public List<Consulta> buscarPorNomePaciente(@RequestBody ParametrosPesquisa parametros) {
+		return consultaService.buscarPorNomePaciente(parametros);
 	}
 	
 

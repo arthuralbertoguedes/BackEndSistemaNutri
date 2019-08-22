@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.projetoREST.model.Consulta;
+import br.com.projetoREST.model.ParametrosPesquisa;
 import br.com.projetoREST.repository.ConsultaRepository;
 
 @Service
@@ -22,13 +23,19 @@ public class ConsultaService {
 		return consultaRepository.findAll();
 	}
 	
-	public List<Consulta> buscarPorNomePaciente(String nomePaciente){
-		if(nomePaciente.equals("flagListarTodos"))
+	public List<Consulta> buscarPorNomePaciente(ParametrosPesquisa parametros){
+		String nomePaciente = "";
+		
+		if(parametros.getPesquisa().equals("flagListarTodos"))
 			nomePaciente = "%%";
 		else
-			nomePaciente = "%" + nomePaciente + "%";
-		return consultaRepository.buscarPorNomePaciente(nomePaciente);
+			nomePaciente = "%" + parametros.getPesquisa() + "%";
+			
+		
+		return consultaRepository
+				.buscarPorNomePaciente(nomePaciente, parametros.getDataInicio(), parametros.getDataFim());
 	}
+	
 	
 	public void cancelar(Long id){
 		consultaRepository.deleteById(id);
