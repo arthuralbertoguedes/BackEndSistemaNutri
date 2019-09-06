@@ -31,4 +31,8 @@ public class UsuarioService {
 		else
 			return null;	
 	}
+	
+	public Usuario salvar(Usuario usuario) {
+		return repository.save(usuario);
+	}
 }
