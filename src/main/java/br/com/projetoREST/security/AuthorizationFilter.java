@@ -25,6 +25,8 @@
 //
 //	private String endpointAutenticacao = "/logar/autenticar";
 //	
+//	private String endpointCadastrarUsuario = "/usuario/salvar";
+//	
 //	@Override
 //	public void init(FilterConfig filterConfig) throws ServletException {}
 ////
@@ -38,6 +40,12 @@
 //		//Se a requisição quiser realizar o Login, reencaminha para o Login Controller 
 //		if(req.getRequestURI().equals(this.endpointAutenticacao)) {
 //			req.getRequestDispatcher(this.endpointAutenticacao).forward(request, response);
+//			return;	
+//		}
+//		
+//		//Endpoint para cadastrar novo Usuário deve ser liberado 
+//		if(req.getRequestURI().equals(this.endpointCadastrarUsuario)) {
+//			req.getRequestDispatcher(this.endpointCadastrarUsuario).forward(request, response);
 //			return;	
 //		}
 //		
