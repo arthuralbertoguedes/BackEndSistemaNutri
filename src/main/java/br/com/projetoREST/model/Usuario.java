@@ -30,14 +30,15 @@ public class Usuario {
 	/* Status A para ativo e I para inativo */ 
 	private char status;
 	
+	/* Nutricionista é do tipo 1 */
+	/* Paciente é do tipo 2 */
 	@Column(name = "tipo_usuario")
-	@Enumerated(EnumType.STRING)
-	private TipoUsuario tipo_usuario;
+	private int tipo_usuario;
 	
 	public Usuario() {}
 	
 
-	public Usuario(Long id, String login, String senha, String nome, char status, TipoUsuario tipoUsuario) {
+	public Usuario(Long id, String login, String senha, String nome, char status, int tipoUsuario) {
 		super();
 		this.id = id;
 		this.login = login;
@@ -49,12 +50,12 @@ public class Usuario {
 
 	
 
-	public TipoUsuario getTipo_usuario() {
+	public int getTipo_usuario() {
 		return tipo_usuario;
 	}
 
 
-	public void setTipo_usuario(TipoUsuario tipo_usuario) {
+	public void setTipo_usuario(int tipo_usuario) {
 		this.tipo_usuario = tipo_usuario;
 	}
 

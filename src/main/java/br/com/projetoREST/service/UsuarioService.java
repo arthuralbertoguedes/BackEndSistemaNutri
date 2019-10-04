@@ -34,6 +34,21 @@ public class UsuarioService {
 			return null;	
 	}
 	
+	public Usuario verificarUsuarioSenhaPaciente(Login login) {
+		
+		//Verifica se as informações de login estão corretas
+		Usuario usuarioRetornado = this.repository.verificarUsuarioSenhaPaciente(Criptografia.criptografar(login.getUsuario()), Criptografia.criptografar(login.getSenha()));
+		
+		//Caso tenha encontrado algum usuário com as informações correspondentes
+		if(usuarioRetornado!=null)
+			return usuarioRetornado;
+		
+		else
+			return null;	
+	}
+	
+	
+	
 	public Usuario salvar(Usuario usuario) {
 		usuario.setLogin(Criptografia.criptografar(usuario.getLogin()));
 		usuario.setSenha(Criptografia.criptografar(usuario.getSenha()));

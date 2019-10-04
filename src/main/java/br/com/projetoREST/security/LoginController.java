@@ -39,7 +39,16 @@ public class LoginController{
 	public Token autenticar(@RequestBody Login login, HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		//Buscar o usuário e ver se ele tem acesso
 		
-		Usuario usuarioPesquisado = this.service.verificarUsuarioSenha(login);
+		Usuario usuarioPesquisado = null;
+		
+		// Buscar Nutricionista
+		if(login.getTipo()==1) 
+			usuarioPesquisado = this.service.verificarUsuarioSenha(login);
+		
+		// Buscar Paciente
+		else
+			usuarioPesquisado = this.service.verificarUsuarioSenhaPaciente(login);
+		
 		
 		//Caso exista um usuario cadastrado com as informações enviadas pelo Login 
 		if(usuarioPesquisado != null) {
@@ -54,7 +63,7 @@ public class LoginController{
 					.setSubject(usuarioPesquisado.getId().toString())
 					.setClaims(claims)
 					.setExpiration(new Date(System.currentTimeMillis() + duracaoToken))
-					.signWith(SignatureAlgorithm.HS512, "abacaxi")
+					.signWith(SignatureAlgorithm.HS512, "NFSKEYSECRET9@391272428123JWSKM29")
 					.compact();
 			
 			

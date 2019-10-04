@@ -13,7 +13,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>{
 	
 		@Query("SELECT usuario FROM Usuario usuario "
 				+ "WHERE usuario.login is :usuario "
-				+ "and usuario.senha is :senha")
+				+ "and usuario.senha is :senha and usuario.tipo_usuario = '1'")
 		public Usuario verificarUsuarioSenha(@Param("usuario") String usuario, @Param("senha") String senha);
 	
+		@Query("SELECT usuario FROM Usuario usuario "
+				+ "WHERE usuario.login is :usuario "
+				+ "and usuario.senha is :senha and usuario.tipo_usuario = '2'")
+		public Usuario verificarUsuarioSenhaPaciente(@Param("usuario") String usuario, @Param("senha") String senha);
 }

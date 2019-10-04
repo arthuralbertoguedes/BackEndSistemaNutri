@@ -16,13 +16,16 @@ public class Login {
 	
 	private String senha;
 	
+	private int tipo;
+	
 	public Login() {}
 
-	public Login(String usuario, String senha, Long id) {
+	public Login(String usuario, String senha, Long id, int tipo) {
 		super();
 		this.usuario = usuario;
 		this.senha = senha;
 		this.id = id;
+		this.tipo = tipo;
 	}
 
 	
@@ -48,6 +51,14 @@ public class Login {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
 	}
 	
 	

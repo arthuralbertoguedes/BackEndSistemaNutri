@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.projetoREST.model.Paciente;
 import br.com.projetoREST.repository.PacienteRepository;
+import br.com.projetoREST.security.Criptografia;
 
 @Service
 public class PacienteService {
@@ -19,6 +20,13 @@ public class PacienteService {
 	
 	public Long salvar(Paciente pessoa) {
 		pessoa.setDataCadastro(LocalDateTime.now());
+		
+		String loginCriptografado = Criptografia.criptografar(pessoa.getUsuario().getLogin());
+		String senhaCriptografada = Criptografia.criptografar(pessoa.getUsuario().getSenha());
+		
+		pessoa.getUsuario().setLogin(loginCriptografado);
+		pessoa.getUsuario().setSenha(senhaCriptografada);
+
 		return pacienteRepository.save(pessoa).getId();
 	}
 	

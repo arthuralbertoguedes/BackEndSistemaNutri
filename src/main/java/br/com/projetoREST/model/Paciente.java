@@ -48,6 +48,10 @@ public class Paciente {
 	
 	private String localImagem;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
+	
 	@OneToMany(mappedBy = "paciente")
 	@JsonIgnore
 	private List<Consulta> consulta = new ArrayList<>();
@@ -60,6 +64,16 @@ public class Paciente {
 	@OneToOne(mappedBy="paciente", fetch = FetchType.LAZY)
 	private Anamnese anamnese;
 	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+
 	@JsonIgnore
 	@OneToOne(mappedBy="paciente", fetch = FetchType.LAZY)
 	private Antropometria antropometria;
