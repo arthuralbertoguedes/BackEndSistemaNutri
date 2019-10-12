@@ -63,7 +63,7 @@ public class LoginController{
 					.setSubject(usuarioPesquisado.getId().toString())
 					.setClaims(claims)
 					.setExpiration(new Date(System.currentTimeMillis() + duracaoToken))
-					.signWith(SignatureAlgorithm.HS512, "NFSKEYSECRET9@391272428123JWSKM29")
+					.signWith(SignatureAlgorithm.HS512, "abacaxi")
 					.compact();
 			
 			

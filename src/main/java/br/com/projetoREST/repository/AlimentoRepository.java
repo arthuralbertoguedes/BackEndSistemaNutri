@@ -11,7 +11,8 @@ import br.com.projetoREST.model.Alimento;
 public interface AlimentoRepository extends JpaRepository<Alimento, Long>{
 
 	
-	@Query("select bean from Alimento bean where bean.descricao like :pesquisa")
+	@Query(value = "select * from alimento where alimento.descricao like :pesquisa LIMIT 10"
+				, nativeQuery = true)
 	public Alimento[] listarPorNome(@Param("pesquisa") String pesquisa);
 	
 }
