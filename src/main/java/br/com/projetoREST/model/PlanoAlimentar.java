@@ -1,11 +1,17 @@
 package br.com.projetoREST.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class PlanoAlimentar {
@@ -20,6 +26,9 @@ public class PlanoAlimentar {
 	
 	//Id do usuário do tipo nutricionista que cadastrou o plano alimentar
 	private Long nutricionista_id;
+	
+	@OneToMany(mappedBy="planoAlimentar", cascade = CascadeType.ALL)
+	private List<Refeicao> refeicoes = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -52,6 +61,15 @@ public class PlanoAlimentar {
 	public void setNutricionista_id(Long nutricionista_id) {
 		this.nutricionista_id = nutricionista_id;
 	}
+
+	public List<Refeicao> getRefeicoes() {
+		return refeicoes;
+	}
+
+	public void setRefeicoes(List<Refeicao> refeicoes) {
+		this.refeicoes = refeicoes;
+	}
+	
 	
 	
 }
