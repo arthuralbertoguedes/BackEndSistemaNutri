@@ -59,6 +59,11 @@ public class PacienteController {
 		return this.pacienteService.listarPorId(id);
 	}
 	
+	@RequestMapping(value="/listarPorUsuarioId/{id}")
+	public Optional<Paciente> listarPorUsuarioId(@PathVariable("id") Long id) {
+
+		return this.pacienteService.listarPorUsuarioId(id);
+	}
 	
 
 }

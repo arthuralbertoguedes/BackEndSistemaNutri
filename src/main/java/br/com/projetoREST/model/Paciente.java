@@ -64,6 +64,16 @@ public class Paciente {
 	@OneToOne(mappedBy="paciente", fetch = FetchType.LAZY)
 	private Anamnese anamnese;
 	
+	/* Id do usuário do tipo nutricionista que cadastrou o paciente */ 
+	@Column(name = "nutricionista_id", nullable = false)
+	private Long nutricionista_id;
+	
+
+
+	@JsonIgnore
+	@OneToOne(mappedBy="paciente", fetch = FetchType.LAZY)
+	private Antropometria antropometria;
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -73,10 +83,6 @@ public class Paciente {
 		this.usuario = usuario;
 	}
 
-
-	@JsonIgnore
-	@OneToOne(mappedBy="paciente", fetch = FetchType.LAZY)
-	private Antropometria antropometria;
 	
 	public Paciente() {}
 
@@ -208,6 +214,16 @@ public class Paciente {
 
 	public void setLocalImagem(String localImagem) {
 		this.localImagem = localImagem;
+	}
+
+
+	public Long getNutricionista_id() {
+		return nutricionista_id;
+	}
+
+
+	public void setNutricionista_id(Long nutricionista_id) {
+		this.nutricionista_id = nutricionista_id;
 	}
 
 	

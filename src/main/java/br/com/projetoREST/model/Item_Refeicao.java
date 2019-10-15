@@ -1,5 +1,6 @@
 package br.com.projetoREST.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,11 @@ public class Item_Refeicao {
 //	@JoinColumn(name="refeicao_id")
 //	private Refeicao refeicao;
 	
-	private Long alimento_id;
+	//private Long alimento_id;
+	
+	@ManyToOne( cascade = CascadeType.MERGE)
+	@JoinColumn(name = "alimento_id")
+	private Alimento alimento;
 	
 	private Long refeicao_id;
 
@@ -59,14 +64,14 @@ public class Item_Refeicao {
 	public void setQuantidade(String quantidade) {
 		this.quantidade = quantidade;
 	}
-
-	public Long getAlimento_id() {
-		return alimento_id;
-	}
-
-	public void setAlimento_id(Long alimento_id) {
-		this.alimento_id = alimento_id;
-	}
+//
+//	public Long getAlimento_id() {
+//		return alimento_id;
+//	}
+//
+//	public void setAlimento_id(Long alimento_id) {
+//		this.alimento_id = alimento_id;
+//	}
 
 	public Long getRefeicao_id() {
 		return refeicao_id;
@@ -74,6 +79,14 @@ public class Item_Refeicao {
 
 	public void setRefeicao_id(Long refeicao_id) {
 		this.refeicao_id = refeicao_id;
+	}
+
+	public Alimento getAlimento() {
+		return alimento;
+	}
+
+	public void setAlimento(Alimento alimento) {
+		this.alimento = alimento;
 	}
 	
 	

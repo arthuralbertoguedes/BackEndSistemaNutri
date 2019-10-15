@@ -3,10 +3,12 @@ package br.com.projetoREST.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projetoREST.model.Usuario;
@@ -19,9 +21,9 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService service;
 	
-	@RequestMapping(value="/buscarUsuario", method = RequestMethod.GET)
-	public Optional<Usuario> buscarUsuario() {
-		return this.service.buscarUsuario(new Long(1));
+	@RequestMapping(value="/buscarUsuario/{id}", method = RequestMethod.GET)
+	public Optional<Usuario> buscarUsuario(@PathVariable("id") Long id) {
+		return this.service.buscarUsuario(id);
 	}
 	
 	@PostMapping("/salvar")

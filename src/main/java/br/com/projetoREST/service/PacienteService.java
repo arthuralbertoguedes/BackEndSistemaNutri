@@ -48,4 +48,8 @@ public class PacienteService {
 		return pacienteRepository.findById(id);
 	}
 
+	public Optional<Paciente> listarPorUsuarioId(Long id){
+		return pacienteRepository.listarPorUsuarioId(id);
+	}
+
 }	

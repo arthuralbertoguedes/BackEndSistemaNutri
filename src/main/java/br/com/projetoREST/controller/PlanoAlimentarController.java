@@ -1,6 +1,9 @@
 package br.com.projetoREST.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,5 +36,11 @@ public class PlanoAlimentarController {
 		}
 		
 		return service.salvar(planoAlimentar);
+	}
+	
+	@RequestMapping(value = "/buscar/{idPaciente}", method = RequestMethod.GET)
+	public List<PlanoAlimentar> buscarPorPaciente(@PathVariable("idPaciente") Long idPaciente) {
+		return service.buscarPorPaciente(idPaciente);
+		
 	}
 }

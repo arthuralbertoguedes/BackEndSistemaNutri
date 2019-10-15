@@ -17,7 +17,7 @@ public class UsuarioService {
 	UsuarioRepository repository;
 	
 	public Optional<Usuario> buscarUsuario(Long id) {
-		return this.repository.findById(new Long(1));
+		return this.repository.findById(id);
 	}
 	
 	

@@ -1,5 +1,7 @@
 package br.com.projetoREST.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,9 @@ public class PlanoAlimentarService {
 	
 	public PlanoAlimentar salvar(PlanoAlimentar planoAlimentar) {
 		return repository.save(planoAlimentar);
+	}
+	
+	public List<PlanoAlimentar> buscarPorPaciente(Long idPaciente) {
+		return repository.buscarPorPaciente(idPaciente);
 	}
 }
