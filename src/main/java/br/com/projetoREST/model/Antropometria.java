@@ -1,5 +1,7 @@
 package br.com.projetoREST.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -57,6 +59,8 @@ public class Antropometria {
 		
 		private int cintura;
 		
+		private LocalDate data;
+		
 		@OneToOne(cascade = CascadeType.MERGE)
 		@JoinColumn(name="paciente_id", referencedColumnName="id")
 		private Paciente paciente;
@@ -70,7 +74,7 @@ public class Antropometria {
 				int bracoContraidoEsquerdo, int antebracoContraidoDireito, int antebracoRelaxadoDireito,
 				int antebracoRelaxadoEsquerdo, int antebracoContraidoEsquerdo, int panturrilhaEsquerda,
 				int panturrilhaDireita, int coxaEsquerda, int coxaDireita, int pescoco, int ombro, int peitoral,
-				int cintura, Paciente paciente) {
+				int cintura, Paciente paciente, LocalDate data) {
 			super();
 			Id = id;
 			this.altura = altura;
@@ -95,6 +99,17 @@ public class Antropometria {
 			this.peitoral = peitoral;
 			this.cintura = cintura;
 			this.paciente = paciente;
+			this.data = data;
+		}
+
+
+		public LocalDate getData() {
+			return data;
+		}
+
+
+		public void setData(LocalDate data) {
+			this.data = data;
 		}
 
 

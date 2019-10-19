@@ -1,6 +1,6 @@
 package br.com.projetoREST.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class AntropometriaService {
 		return this.repository.save(antropometria);
 	}
 	
-	public Optional<Antropometria> buscarPorIdPaciente(Long id){
+	public List<Antropometria> buscarPorIdPaciente(Long id){
 		return this.repository.buscarPorIdPaciente(id);
 	}
 

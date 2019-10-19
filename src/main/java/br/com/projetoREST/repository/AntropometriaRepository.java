@@ -1,6 +1,6 @@
 package br.com.projetoREST.repository;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +15,6 @@ public interface AntropometriaRepository extends JpaRepository<Antropometria, Lo
 
 	@Query(value=" select antropometria from Antropometria antropometria"
 			+ "		where antropometria.paciente.id = :id")
-	public Optional<Antropometria> buscarPorIdPaciente(@Param("id") Long id);
+	public List<Antropometria> buscarPorIdPaciente(@Param("id") Long id);
 	
 }

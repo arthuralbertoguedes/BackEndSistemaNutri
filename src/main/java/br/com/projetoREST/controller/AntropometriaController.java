@@ -1,6 +1,6 @@
 package br.com.projetoREST.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +24,7 @@ public class AntropometriaController {
 	}
 	
 	@RequestMapping(value="/{id}")
-	public Optional<Antropometria> buscarPorIdPaciente(@PathVariable("id") Long id){
+	public List<Antropometria> buscarPorIdPaciente(@PathVariable("id") Long id){
 		return this.service.buscarPorIdPaciente(id);
 	}
 	

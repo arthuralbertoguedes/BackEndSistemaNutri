@@ -63,7 +63,7 @@ public class AuthorizationFilter implements Filter {
 					* senão, lança exceção e bloqueia o acesso */
 					try {
 						
-						Jwts.parser().setSigningKey("abacaxi").parse(token).getBody();						
+						Jwts.parser().setSigningKey("NSI245@483SK38S9K4Slo29l").parse(token).getBody();						
 						chain.doFilter(request, response);
 						return;
 					}

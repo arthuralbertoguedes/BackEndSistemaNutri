@@ -71,8 +71,8 @@ public class Paciente {
 
 
 	@JsonIgnore
-	@OneToOne(mappedBy="paciente", fetch = FetchType.LAZY)
-	private Antropometria antropometria;
+	@OneToMany(mappedBy="paciente", fetch = FetchType.LAZY)
+	private List<Antropometria> antropometria = new ArrayList<>();
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -89,7 +89,7 @@ public class Paciente {
 
 	public Paciente(Long id, String nome, char genero, LocalDate dataNascimento, String telefone, String email,
 			LocalDateTime dataCadastro, LocalDate ultimaConsulta, List<Consulta> consulta, Endereco endereco,
-			Anamnese anamnese, Antropometria antropometria, String localImagem) {
+			Anamnese anamnese, List<Antropometria> antropometria, String localImagem) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -117,11 +117,11 @@ public class Paciente {
 		this.anamnese = anamnese;
 	}
 
-	public Antropometria getAntropometria() {
+	public List<Antropometria> getAntropometria() {
 		return antropometria;
 	}
 
-	public void setAntropometria(Antropometria antropometria) {
+	public void setAntropometria(List<Antropometria> antropometria) {
 		this.antropometria = antropometria;
 	}
 
