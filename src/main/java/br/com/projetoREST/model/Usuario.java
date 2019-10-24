@@ -2,13 +2,10 @@ package br.com.projetoREST.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import br.com.projetoREST.enums.TipoUsuario;
+import javax.persistence.OneToMany;
 
 /*
 * Entidade que salva os usuários do sistema  
@@ -35,6 +32,8 @@ public class Usuario {
 	@Column(name = "tipo_usuario")
 	private int tipo_usuario;
 	
+
+
 	public Usuario() {}
 	
 
@@ -48,7 +47,7 @@ public class Usuario {
 		this.tipo_usuario = tipoUsuario;
 	}
 
-	
+
 
 	public int getTipo_usuario() {
 		return tipo_usuario;

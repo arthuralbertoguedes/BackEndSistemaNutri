@@ -69,19 +69,9 @@ public class Paciente {
 	private Long nutricionista_id;
 	
 
-
 	@JsonIgnore
 	@OneToMany(mappedBy="paciente", fetch = FetchType.LAZY)
 	private List<Antropometria> antropometria = new ArrayList<>();
-	
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 
 	
 	public Paciente() {}
@@ -106,6 +96,14 @@ public class Paciente {
 		this.localImagem = localImagem;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 
 

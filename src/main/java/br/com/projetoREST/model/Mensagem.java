@@ -1,13 +1,15 @@
 package br.com.projetoREST.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Mensagem {
@@ -22,11 +24,13 @@ public class Mensagem {
 	
 	private boolean foiLida;
 	
-	@OneToOne
-	@JoinColumn(name="usuario_id")
+	private String remetente;
+	
+	@ManyToOne
+	@JoinColumn(name="nutricionista_id")
 	private Usuario usuario;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="paciente_id")
 	private Paciente paciente;
 	
@@ -90,6 +94,15 @@ public class Mensagem {
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
+
+	public String getRemetente() {
+		return remetente;
+	}
+
+	public void setRemetente(String remetente) {
+		this.remetente = remetente;
+	}
+
 	
 	
 }
